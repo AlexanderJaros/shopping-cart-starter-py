@@ -1,4 +1,7 @@
 # shopping_cart.py
+from datetime import datetime
+now = datetime.now()
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -27,6 +30,7 @@ products = [
 
 #print(products)
 
+total_price = 0
 
 shopping_list_inputs = [] #storing inputs from in list code from https://stackoverflow.com/questions/43141691/storing-user-input-in-a-list-and-writing-a-loop-to-find-a-valid-value-from-that?rq=1
 while True:
@@ -38,4 +42,40 @@ while True:
         break
     shopping_list_inputs.append(user_input)
 
-print("Customer Purchases: ",shopping_list_inputs)
+#to do: data validation
+#print("Customer Purchases: ",shopping_list_inputs)
+
+print("--------------------------------")
+print("Georgetown Grocery Store")
+print("--------------------------------")
+print("Web: www.georgetowngrocery.com")
+print("Phone: 1.212.387.6890")
+print("Checkout Time: ", dt_string) #https://www.programiz.com/python-programming/datetime/current-datetime
+print("--------------------------------")
+print("Shopping Cart Items:")
+
+for selected_id in shopping_list_inputs:
+    matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+    matching_product = matching_products[0]
+    total_price = total_price + matching_product["price"]
+    # put in currency format
+    print("..." + matching_product["name"] + " " + str(matching_product["price"]))
+
+total_price_usd = "${0:.2f}".format(total_price)
+print("--------------------------------")
+print("SUBTOTAL: " + str(total_price_usd))
+def apply_tax(any_total):
+    any_total*.06   
+print("Plus DC Sales Tax (6%): " + apply_tax(total_price_usd)
+print("TOTAL: ", apply_tax(total_price_usd))
+print("--------------------------------")
+print("Thanks for your business! Please come again!")
+
+#def sort_by_name(shopping_list_inputs):
+#    return shopping_list_inputs["name"]
+#    
+#sorted_products = sorted(products, key=sort_by_name)
+#
+#for p in sorted_products:
+#    price_usd = "${0:.2f}".format(p["price"])
+#    print("..." + p["name"] + " (" + str(price_usd) + ")") 
