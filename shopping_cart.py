@@ -61,21 +61,16 @@ for selected_id in shopping_list_inputs:
     # put in currency format
     print("..." + matching_product["name"] + " " + str(matching_product["price"]))
 
-total_price_usd = "${0:.2f}".format(total_price)
+subtotal_price_usd = "${0:.2f}".format(total_price)
+
 print("--------------------------------")
-print("SUBTOTAL: " + str(total_price_usd))
-def apply_tax(any_total):
-    any_total*.06   
-print("Plus DC Sales Tax (6%): " + apply_tax(total_price_usd)
-print("TOTAL: ", apply_tax(total_price_usd))
+print("SUBTOTAL: " + str(subtotal_price_usd))
+x = float(total_price) #https://stackoverflow.com/questions/379906/how-do-i-parse-a-string-to-a-float-or-int
+tax = .06
+sales_tax = (x*tax)
+print("DC Sales Tax (6%): " + "${0:.2f}".format(sales_tax))
+total = x + sales_tax
+print("FINAL TOTAL: " + "${0:.2f}".format(total))
 print("--------------------------------")
 print("Thanks for your business! Please come again!")
 
-#def sort_by_name(shopping_list_inputs):
-#    return shopping_list_inputs["name"]
-#    
-#sorted_products = sorted(products, key=sort_by_name)
-#
-#for p in sorted_products:
-#    price_usd = "${0:.2f}".format(p["price"])
-#    print("..." + p["name"] + " (" + str(price_usd) + ")") 
