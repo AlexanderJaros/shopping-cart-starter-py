@@ -73,4 +73,4 @@ total = x + sales_tax
 print("FINAL TOTAL: " + "${0:.2f}".format(total))
 print("--------------------------------")
 print("Thanks for your business! Please come again!")
-
+print("--------------------------------")
