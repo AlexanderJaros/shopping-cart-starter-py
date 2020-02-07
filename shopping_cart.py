@@ -32,17 +32,20 @@ products = [
 
 total_price = 0
 
+valid_inputs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "DONE"]
 shopping_list_inputs = [] #storing inputs from in list code from https://stackoverflow.com/questions/43141691/storing-user-input-in-a-list-and-writing-a-loop-to-find-a-valid-value-from-that?rq=1
 while True:
     # capturing user input and storing in a variable
     user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ")
     # demonstrating ability to recognize what the input was, although you might also want to check its datatype
     #print("YOUR INPUT WAS: " + user_input)
+    if user_input not in valid_inputs:
+        print("This input is not valid, please try again.")
+        user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ")
     if user_input == "DONE":
         break
     shopping_list_inputs.append(user_input)
 
-#to do: data validation
 #print("Customer Purchases: ",shopping_list_inputs)
 
 print("--------------------------------")
