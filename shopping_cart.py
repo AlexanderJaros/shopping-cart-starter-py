@@ -32,8 +32,6 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-# TODO: write some Python code here to produce the desired functionality...
-
 #print(products)
 
 total_price = 0
@@ -84,7 +82,7 @@ print("--------------------------------")
 print("Thanks for your business! Please come again!")
 print("--------------------------------")
 
-
+#email option 
 valid_inputs1 = ["y", "n"]
 user_input1 = input("Would the customer like to be emailed their receipt? [y/n] ")
 if user_input1 not in valid_inputs1:
@@ -96,7 +94,7 @@ else:
     print("No receipt will be emailed.")
     quit()
 
-email = 'georgetowngrocery2@gmail.com'
+email = 'georgetowngrocery2@gmail.com' #here are the login credentials for the email that I made for this program
 password = 'grocerygtown'
 send_to_email = user_input2
 subject = "Here is your receipt from Georgetown Grocery!"
