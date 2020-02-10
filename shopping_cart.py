@@ -3,6 +3,11 @@ from datetime import datetime
 now = datetime.now()
 dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
 
+import smtplib
+from email.mime.text import MIMEText 
+from email.mime.multipart import MIMEMultipart
+# used https://nitratine.net/blog/post/how-to-send-an-email-with-python/
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -77,3 +82,35 @@ print("FINAL TOTAL: " + "${0:.2f}".format(total))
 print("--------------------------------")
 print("Thanks for your business! Please come again!")
 print("--------------------------------")
+
+
+valid_inputs1 = ["y", "n"]
+user_input1 = input("Would the customer like to be emailed their receipt? [y/n] ")
+if user_input1 not in valid_inputs1:
+    print("This input is not valid, please try again.")
+    user_input1 = input("Would the customer like to be emailed their receipt? [y/n] ")
+if user_input1 == "y":
+     user_input2 = input("Please enter customer's email address: ")
+else: 
+    print("No receipt will be emailed.")
+    quit()
+
+email = 'georgetowngrocery2@gmail.com'
+password = 'grocerygtown'
+send_to_email = user_input2
+subject = "Here is your receipt from Georgetown Grocery!"
+message = "Thank you for shopping at Georgetown Grocery. Your total is " + "${0:.2f}".format(total) + " at " + dt_string + "."
+
+msg = MIMEMultipart()
+msg['From'] = email
+msg['To'] = send_to_email
+msg['Subject'] = subject
+
+msg.attach(MIMEText(message, 'plain'))
+
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login(email, password)
+text = msg.as_string()
+server.sendmail(email, send_to_email, text)
+server.quit()
