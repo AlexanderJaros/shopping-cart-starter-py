@@ -1,4 +1,5 @@
 # shopping_cart.py
+# env is shopping-cart-env
 from datetime import datetime
 now = datetime.now()
 dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
