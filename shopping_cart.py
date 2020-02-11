@@ -65,7 +65,6 @@ for selected_id in shopping_list_inputs:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     total_price = total_price + matching_product["price"]
-    # put in currency format
     print("..." + matching_product["name"] + " " + "${0:.2f}".format(matching_product["price"]))
 
 subtotal_price_usd = "${0:.2f}".format(total_price)
