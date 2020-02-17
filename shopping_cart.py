@@ -1,5 +1,8 @@
 # shopping_cart.py
 # env is shopping-cart-env
+from dotenv import load_dotenv
+import os
+
 from datetime import datetime
 now = datetime.now()
 dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
@@ -93,8 +96,10 @@ else:
     print("No receipt will be emailed.")
     quit()
 
-email = 'georgetowngrocery2@gmail.com' #here are the login credentials for the email that I made for this program
-password = 'grocerygtown'
+load_dotenv()
+
+email = os.environ.get("email")
+password = os.environ.get("password")
 send_to_email = user_input2
 subject = "Here is your receipt from Georgetown Grocery!"
 message = "Thank you for shopping at Georgetown Grocery. Your total is " + "${0:.2f}".format(total) + " at " + dt_string + "."
