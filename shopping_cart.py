@@ -15,6 +15,13 @@ from email.mime.multipart import MIMEMultipart
 def to_usd(my_price):
     return "${0:,.2f}".format(my_price)
 
+# looks up a product given its unique identifier
+# ... from a provided list of products
+def find_product(product_id, all_products):
+    matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+    matching_product = matching_products[0]
+    return matching_product
+ 
 if __name__ == "__main__":
 
     products = [
@@ -70,8 +77,7 @@ print("--------------------------------")
 print("Shopping Cart Items:")
 
 for selected_id in shopping_list_inputs:
-    matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
-    matching_product = matching_products[0]
+    matching_product = find_product(selected_id, products)
     total_price = total_price + matching_product["price"]
     print("..." + matching_product["name"] + " " + to_usd(matching_product["price"]))
 
