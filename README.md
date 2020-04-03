@@ -39,6 +39,20 @@ All citations occur as comments within the code of the python file.
 
 Beyond what packages are imported at the beginning of the code, nothing else needs to be installed. 
 
+## Testing
+
+Install the `pytest` package, perhaps within a virtual environment:
+
+```sh
+pip install pytest
+```
+
+Run tests:
+
+```py
+pytest
+```
+
 
 
 
