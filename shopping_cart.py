@@ -1,7 +1,8 @@
 # shopping_cart.py
 # env is shopping-cart-env
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
 from datetime import datetime
 now = datetime.now()
