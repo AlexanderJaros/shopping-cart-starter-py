@@ -12,6 +12,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 # used https://nitratine.net/blog/post/how-to-send-an-email-with-python/
 
+DC_tax = 0.06
+
 def to_usd(my_price):
     return "${0:,.2f}".format(my_price)
 
@@ -51,22 +53,25 @@ if __name__ == "__main__":
 
 total_price = 0
 
+#INFO CAPTURE AND VALIDATION
 valid_inputs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "DONE"]
 shopping_list_inputs = [] #storing inputs from in list code from https://stackoverflow.com/questions/43141691/storing-user-input-in-a-list-and-writing-a-loop-to-find-a-valid-value-from-that?rq=1
 while True:
     # capturing user input and storing in a variable
-    user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ")
+    selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
     # demonstrating ability to recognize what the input was, although you might also want to check its datatype
     #print("YOUR INPUT WAS: " + user_input)
-    if user_input not in valid_inputs:
+    if selected_id not in valid_inputs:
         print("This input is not valid, please try again.")
-        user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ")
+        selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
     if user_input == "DONE":
         break
-    shopping_list_inputs.append(user_input)
+    shopping_list_inputs.append(selected_id)
 
 #print("Customer Purchases: ",shopping_list_inputs)
+#INFO CAPTURE AND VALIDATION
 
+#OUTPUTS
 print("--------------------------------")
 print("Georgetown Grocery Store")
 print("--------------------------------")
@@ -86,16 +91,16 @@ subtotal_price_usd = to_usd(total_price)
 print("--------------------------------")
 print("SUBTOTAL: " + str(subtotal_price_usd))
 x = float(total_price) #https://stackoverflow.com/questions/379906/how-do-i-parse-a-string-to-a-float-or-int
-tax = .06
-sales_tax = (x*tax)
+sales_tax = (x*DC_tax)
 print("DC Sales Tax (6%): " + to_usd(sales_tax))
 total = x + sales_tax
 print("FINAL TOTAL: " + to_usd(total))
 print("--------------------------------")
 print("Thanks for your business! Please come again!")
 print("--------------------------------")
+#OUTPUTS
 
-#email option 
+#EMAIL OPTION 
 valid_inputs1 = ["y", "n"]
 user_input1 = input("Would the customer like to be emailed their receipt? [y/n] ")
 if user_input1 not in valid_inputs1:
@@ -128,3 +133,4 @@ server.login(email, password)
 text = msg.as_string()
 server.sendmail(email, send_to_email, text)
 server.quit()
+#EMAIL OPTION 
