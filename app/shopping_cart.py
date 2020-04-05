@@ -49,88 +49,88 @@ if __name__ == "__main__":
         {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
     ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-#print(products)
+    #print(products)
 
-total_price = 0
+    total_price = 0
 
-#INFO CAPTURE AND VALIDATION
-valid_inputs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "DONE"]
-shopping_list_inputs = [] #storing inputs from in list code from https://stackoverflow.com/questions/43141691/storing-user-input-in-a-list-and-writing-a-loop-to-find-a-valid-value-from-that?rq=1
-while True:
-    # capturing user input and storing in a variable
-    selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
-    # demonstrating ability to recognize what the input was, although you might also want to check its datatype
-    #print("YOUR INPUT WAS: " + user_input)
-    if selected_id not in valid_inputs:
-        print("This input is not valid, please try again.")
+    #INFO CAPTURE AND VALIDATION
+    valid_inputs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "DONE"]
+    shopping_list_inputs = [] #storing inputs from in list code from https://stackoverflow.com/questions/43141691/storing-user-input-in-a-list-and-writing-a-loop-to-find-a-valid-value-from-that?rq=1
+    while True:
+        # capturing user input and storing in a variable
         selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
-    if user_input == "DONE":
-        break
-    shopping_list_inputs.append(selected_id)
+        # demonstrating ability to recognize what the input was, although you might also want to check its datatype
+        #print("YOUR INPUT WAS: " + user_input)
+        if selected_id not in valid_inputs:
+            print("This input is not valid, please try again.")
+            selected_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
+        if user_input == "DONE":
+            break
+        shopping_list_inputs.append(selected_id)
 
-#print("Customer Purchases: ",shopping_list_inputs)
-#INFO CAPTURE AND VALIDATION
+    #print("Customer Purchases: ",shopping_list_inputs)
+    #INFO CAPTURE AND VALIDATION
 
-#OUTPUTS
-print("--------------------------------")
-print("Georgetown Grocery Store")
-print("--------------------------------")
-print("Web: www.georgetowngrocery.com")
-print("Phone: 1.212.387.6890")
-print("Checkout Time: ", dt_string) #https://www.programiz.com/python-programming/datetime/current-datetime
-print("--------------------------------")
-print("Shopping Cart Items:")
+    #OUTPUTS
+    print("--------------------------------")
+    print("Georgetown Grocery Store")
+    print("--------------------------------")
+    print("Web: www.georgetowngrocery.com")
+    print("Phone: 1.212.387.6890")
+    print("Checkout Time: ", dt_string) #https://www.programiz.com/python-programming/datetime/current-datetime
+    print("--------------------------------")
+    print("Shopping Cart Items:")
 
-for selected_id in shopping_list_inputs:
-    matching_product = find_product(selected_id, products)
-    total_price = total_price + matching_product["price"]
-    print("..." + matching_product["name"] + " " + to_usd(matching_product["price"]))
+    for selected_id in shopping_list_inputs:
+        matching_product = find_product(selected_id, products)
+        total_price = total_price + matching_product["price"]
+        print("..." + matching_product["name"] + " " + to_usd(matching_product["price"]))
 
-subtotal_price_usd = to_usd(total_price)
+    subtotal_price_usd = to_usd(total_price)
 
-print("--------------------------------")
-print("SUBTOTAL: " + str(subtotal_price_usd))
-x = float(total_price) #https://stackoverflow.com/questions/379906/how-do-i-parse-a-string-to-a-float-or-int
-sales_tax = (x*DC_tax)
-print("DC Sales Tax (6%): " + to_usd(sales_tax))
-total = x + sales_tax
-print("FINAL TOTAL: " + to_usd(total))
-print("--------------------------------")
-print("Thanks for your business! Please come again!")
-print("--------------------------------")
-#OUTPUTS
+    print("--------------------------------")
+    print("SUBTOTAL: " + str(subtotal_price_usd))
+    x = float(total_price) #https://stackoverflow.com/questions/379906/how-do-i-parse-a-string-to-a-float-or-int
+    sales_tax = (x*DC_tax)
+    print("DC Sales Tax (6%): " + to_usd(sales_tax))
+    total = x + sales_tax
+    print("FINAL TOTAL: " + to_usd(total))
+    print("--------------------------------")
+    print("Thanks for your business! Please come again!")
+    print("--------------------------------")
+    #OUTPUTS
 
-#EMAIL OPTION 
-valid_inputs1 = ["y", "n"]
-user_input1 = input("Would the customer like to be emailed their receipt? [y/n] ")
-if user_input1 not in valid_inputs1:
-    print("This input is not valid, please try again.")
+    #EMAIL OPTION 
+    valid_inputs1 = ["y", "n"]
     user_input1 = input("Would the customer like to be emailed their receipt? [y/n] ")
-if user_input1 == "y":
-     user_input2 = input("Please enter customer's email address: ")
-else: 
-    print("No receipt will be emailed.")
-    quit()
+    if user_input1 not in valid_inputs1:
+        print("This input is not valid, please try again.")
+        user_input1 = input("Would the customer like to be emailed their receipt? [y/n] ")
+    if user_input1 == "y":
+        user_input2 = input("Please enter customer's email address: ")
+    else: 
+        print("No receipt will be emailed.")
+        quit()
 
-load_dotenv()
+    load_dotenv()
 
-email = os.environ.get("email")
-password = os.environ.get("password")
-send_to_email = user_input2
-subject = "Here is your receipt from Georgetown Grocery!"
-message = "Thank you for shopping at Georgetown Grocery. Your total is " + to_usd(total) + " at " + dt_string + "."
+    email = os.environ.get("email")
+    password = os.environ.get("password")
+    send_to_email = user_input2
+    subject = "Here is your receipt from Georgetown Grocery!"
+    message = "Thank you for shopping at Georgetown Grocery. Your total is " + to_usd(total) + " at " + dt_string + "."
 
-msg = MIMEMultipart()
-msg['From'] = email
-msg['To'] = send_to_email
-msg['Subject'] = subject
+    msg = MIMEMultipart()
+    msg['From'] = email
+    msg['To'] = send_to_email
+    msg['Subject'] = subject
 
-msg.attach(MIMEText(message, 'plain'))
+    msg.attach(MIMEText(message, 'plain'))
 
-server = smtplib.SMTP('smtp.gmail.com', 587)
-server.starttls()
-server.login(email, password)
-text = msg.as_string()
-server.sendmail(email, send_to_email, text)
-server.quit()
-#EMAIL OPTION 
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(email, password)
+    text = msg.as_string()
+    server.sendmail(email, send_to_email, text)
+    server.quit()
+    #EMAIL OPTION 
