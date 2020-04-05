@@ -17,11 +17,31 @@ DC_tax = 0.06
 products = []
 
 def to_usd(my_price):
+    """
+    Coverts a number to USD formatting, i.e. "$4.50".
+
+    Params:
+       my_price (numeric, like int or float) the number to be converted.
+
+    Examples:
+        to_usd(8)
+        to_usd(4.5)
+    """
     return "${0:,.2f}".format(my_price)
 
 # looks up a product given its unique identifier
 # ... from a provided list of products
 def find_product(product_id, all_products):
+    """
+    Take a given product id and search for the product within the product list.
+
+    Params:
+        product_id (numeric,  int) the unique id of the desired product
+        all_products (alphanumeric, dictionary) the dictionary of all products and their information
+
+    Example:
+        find_poduct(8, products)
+    """
     matching_products = [p for p in all_products if str(p["id"]) == str(product_id)]
     matching_product = matching_products[0]
     return matching_product
