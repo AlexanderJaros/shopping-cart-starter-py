@@ -1,6 +1,6 @@
 import pytest
 
-from app.shopping_cart import DC_tax, to_usd, find_product
+from app.shopping_cart import DC_tax, products, to_usd, find_product
 
 
 def test_find_product():

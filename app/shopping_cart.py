@@ -14,13 +14,15 @@ from email.mime.multipart import MIMEMultipart
 
 DC_tax = 0.06
 
+products = []
+
 def to_usd(my_price):
     return "${0:,.2f}".format(my_price)
 
 # looks up a product given its unique identifier
 # ... from a provided list of products
 def find_product(product_id, all_products):
-    matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+    matching_products = [p for p in all_products if str(p["id"]) == str(product_id)]
     matching_product = matching_products[0]
     return matching_product
  
