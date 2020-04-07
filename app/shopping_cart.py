@@ -12,6 +12,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 # used https://nitratine.net/blog/post/how-to-send-an-email-with-python/
 
+load_dotenv()
+
 DC_tax = 0.06
 
 products = []
